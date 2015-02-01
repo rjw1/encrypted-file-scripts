@@ -20,6 +20,10 @@ fi
 echo -n "enter the password:"
 read -s password
 echo ""
-openssl aes-256-cbc -d -a -in $FILE -k $password |more
-
+if [[ $2 ]]
+then
+  openssl aes-256-cbc -d -a -in $FILE -k $password | grep $2
+else
+  openssl aes-256-cbc -d -a -in $FILE -k $password |more
+fi
 
